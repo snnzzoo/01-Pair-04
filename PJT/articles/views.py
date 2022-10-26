@@ -194,3 +194,20 @@ def search(request):
         return render(request, "articles/search.html", context)
     else:
         return render(request, "articles/index.html")
+
+
+@login_required
+def like(request, movie_pk):
+    # 영화 가져오기
+    movie = Movie.objects.get(pk=movie_pk)
+    # 만약 로그인한 유저가 이미 좋아요를 눌렀다면
+    # if request.user in movie.like_users.all():
+    if movie.like_users.filter(pk=request.user.pk).exists():
+        # 좋아요 취소
+        movie.like_users.remove(request.user)
+    else:
+        # 좋아요
+        movie.like_users.add(request.user)
+    # movie 페이지로 redirect
+    return redirect("articles:moviedetail", movie_pk)
+

@@ -1,31 +1,73 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load django_bootstrap5 %}
+
 {% block content %}
   <div class="container py-5">
     <div class="text-center text-white">
       <h2>User List</h2>
     </div>
-    <div class="row row-cols-1 row-cols-md-2">
+
+
+    <div class="row row-cols-1 row-cols-md-3 g-5">
       {% for user in users %}
-        <div class="col g-4 text-center">
-          <div class="card h-100 m-4 text-white">
-            <div class="card-body">
-              <img src="{{ profile_image }}" style="width: 10rem; height:10rem;" class="shadow-lg mb-3">
-              <h4 class="card-subtitle my-2">{{ user.last_name }}{{ user.first_name }}</h4>
-              <hr>
-              <div class="p-3 text-white text-bg-white opacity-75">
-                <h4 class="card-subtitle my-2 text-warning">
-                  {{ user.email }}</h4>
-                <p class="card-text m-0">user no.
-                  {{ user.pk }}</p>
-                <p class="card-text fs-6">joined at
-                  {{ user.date_joined|date:'Y-m-d H:i:s' }}</p>
+        <div class="col">
+          <a href="{% url 'accounts:profile' user.pk %}" class="text-decoration-none">
+            <div class="card mt-5 mb-4 border border-light" style="width: 25rem;">
+              <div class="card-header border border-light text-white">
+                <h5 class="fw-bold text-center my-1">
+                  {{ user.username }}
+                </h5>
               </div>
+              <div class="card-body d-flex justify-content-center">
+                <img src="{{ profile_image }}" class="card-img-top rounded-1" style="width: 20rem; height: 20rem;" alt="프로필 사진">
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <i class="bi bi-hash me-2"></i>
+                  User No.
+                  {{ user.pk }}</li>
+                <li class="list-group-item">
+                  <i class="bi bi-person-fill me-2"></i>
+                  {{ user.first_name }}
+                  {{ user.last_name }}</li>
+                <li class="list-group-item">
+                  <i class="bi bi-envelope-fill me-2"></i>
+                  {{ user.email }}</li>
+                <li class="list-group-item">
+                  <i class="bi bi-calendar-check-fill me-2"></i>
+                  Joined at
+                  {{ user.date_joined|date:'Y-m-d H:i' }}</li>
+              </ul>
             </div>
-          </div>
+          </a>
         </div>
       {% endfor %}
     </div>
+
+
+        {% comment %} <div class="row row-cols-1 row-cols-md-2">
+          {% for user in users %}
+            <a href="{% url 'accounts:profile' user.pk %}" class="text-decoration-none">
+              <div class="col g-4 text-center">
+                <div class="card h-100 m-4 text-white">
+                  <div class="card-body">
+                    <img src="{{ profile_image }}" style="width: 10rem; height:10rem;" class="shadow-lg mb-4">
+                    <h4 class="card-subtitle my-2">{{ user.last_name }}{{ user.first_name }}</h4>
+                    <hr>
+                    <div class="px-3 pb text-white lh-lg opacity-75">
+                      <h4 class="card-subtitle my-2 text-warning">
+                        {{ user.email }}</h4>
+                      <p class="card-text m-0">User No.
+                        {{ user.pk }}</p>
+                      <p class="card-text fs-6">Joined at
+                        {{ user.date_joined|date:'Y-m-d H:i:s' }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          {% endfor %}
+        </div> {% endcomment %}
   </div>
 {% endblock content %}

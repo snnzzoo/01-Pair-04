@@ -1,13 +1,23 @@
 {% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% load static %}
 {% block content %}
-  {% load django_bootstrap5 %}
 
   <div class="container d-flex flex-column align-items-center py-5">
-    <div class="card mt-5 mb-4 border border-light" style="width: 25rem;">
-      <div class="card-header border border-light text-white opacity-75">
-        <h5 class="fs-3 fw-bold text-center my-1">
-          {{ user.username }}
-        </h5>
+
+    <div class="card mt-5 mb-4 border border-light" style="width: 30rem;">
+      <div class="card-header border border-light text-white">
+        <ul class="nav justify-content-center nav-pills card-header-pills nav-fill">
+          <a class="nav-link active text-center my-1" aria-current="true" href="#">
+            Info
+          </a>
+          <a class="nav-link text-center my-1" href="#">Reviews</a>
+          <a class="nav-link text-center my-1">Likes</a>
+        </ul>
+
+        <!-- JavaScript behavior -->
+        <!-- <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist"> <li class="nav-item" role="presentation"> <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Home</button> </li> <li class="nav-item" role="presentation"> <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</button> </li> <li class="nav-item" role="presentation"> <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button> </li> <li class="nav-item" role="presentation"> <button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#pills-disabled" type="button" role="tab" aria-controls="pills-disabled" aria-selected="false" disabled="disabled">Disabled</button> </li> </ul> <div class="tab-content" id="pills-tabContent"> <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">...</div> <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">...</div> <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">...</div> <div class="tab-pane fade" id="pills-disabled" role="tabpanel" aria-labelledby="pills-disabled-tab" tabindex="0">...</div> </div> -->
+
       </div>
       <div class="card-body d-flex justify-content-center">
         <img src="{{ profile_image }}" class="card-img-top rounded-1" style="width: 20rem; height: 20rem;" alt="...">
@@ -23,10 +33,10 @@
           {{ user.last_name }}</li>
         <li class="list-group-item">
           <i class="bi bi-envelope-fill me-2"></i>
-          {{ user.email }}</li>
+          {{ user.email }}</ li>
         <li class="list-group-item">
           <i class="bi bi-calendar-check-fill me-2"></i>
-          joined at
+          Joined at
           {{ user.date_joined|date:'Y-m-d H:i' }}</li>
       </ul>
     </div>
@@ -64,4 +74,5 @@
     {% endif %}
   </div>
 </div>
+
 {% endblock content %}

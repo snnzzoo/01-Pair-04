@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "django_bootstrap5",
     "multiselectfield",
     "imagekit",
+
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -136,3 +137,10 @@ MEDIA_URL = "/media/"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# User Model
+AUTH_USER_MODEL = 'accounts.User'
+
+# Message Framework
+# https://docs.djangoproject.com/en/4.1/ref/contrib/messages/
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'

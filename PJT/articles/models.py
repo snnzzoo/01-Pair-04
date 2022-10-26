@@ -48,6 +48,8 @@ class Movie(models.Model):
         format="JPEG",
         options={"quality": 80},
     )
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_movies')
+
 
 
 class Review(models.Model):
